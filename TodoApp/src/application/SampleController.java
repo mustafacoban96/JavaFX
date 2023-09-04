@@ -1,5 +1,9 @@
 package application;
 
+import Model.Model;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -14,6 +18,16 @@ public class SampleController {
 	@FXML
 	private DatePicker datePicker;
 	@FXML
-	private ListView<String> eventListView;
+	private ListView<Model> eventListView;
+	
+	ObservableList<Model> myData = FXCollections.observableArrayList();
+	
+	@FXML
+	private void buttonWorkingCode(ActionEvent e) {
+		
+		var newMission = new Model(datePicker.getValue(), missionDescription.getText());
+		myData.add(newMission);
+		eventListView.setItems(myData);
+	}
 	
 }
