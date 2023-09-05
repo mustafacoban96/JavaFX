@@ -1,15 +1,18 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import Model.Model;
+import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -18,6 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 import missionSerializer.MissionSerializer;
 
 public class SampleController implements Initializable{
@@ -64,6 +68,13 @@ public class SampleController implements Initializable{
 		return eventListView.getItems().toArray();
 	}
  	
+	@FXML
+	private void loginBtn() throws IOException {
+		Stage primaryStage = new Stage();
+		Scene primaryScene = new Scene(Main.loadFXML("GirisPaneli"));
+		primaryStage.setScene(primaryScene);
+		primaryStage.show();
+	}
 	
 	
 

@@ -31,7 +31,7 @@ public class Main extends Application {
 		MissionSerializer.serialize(appController.getMissions());
 	}
 	
-	private static Parent loadFXML(String fxml) throws IOException {
+	public static Parent loadFXML(String fxml) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/views/" + fxml + ".fxml"));
 		Parent parent = fxmlLoader.load();
 		appController = fxmlLoader.getController();
