@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class SampleController implements Initializable{
 	@FXML
@@ -31,7 +33,7 @@ public class SampleController implements Initializable{
 	ObservableList<Model> myData = FXCollections.observableArrayList();
 	
 	@FXML
-	private void buttonWorkingCode(ActionEvent e) {
+	private void buttonWorkingCode() {
 		
 		var newMission = new Model(datePicker.getValue(), missionDescription.getText());
 		myData.add(newMission);
@@ -44,6 +46,13 @@ public class SampleController implements Initializable{
 		myData.remove(eventListView.getSelectionModel().getSelectedIndex());
 		
 		
+	}
+	
+	@FXML
+	private void textFieldEnter(KeyEvent e) {
+		if(e.getCode() == KeyCode.ENTER) {
+			buttonWorkingCode();
+		}
 	}
 
 	@Override
