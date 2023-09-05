@@ -57,6 +57,15 @@ public class SampleController implements Initializable{
 			buttonWorkingCode();
 		}
 	}
+	
+	
+	public Object[] getMissions() {
+		
+		return eventListView.getItems().toArray();
+	}
+ 	
+	
+	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
