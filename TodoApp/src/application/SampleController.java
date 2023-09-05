@@ -25,6 +25,9 @@ public class SampleController implements Initializable{
 	@FXML
 	private ListView<Model> eventListView;
 	
+	@FXML
+	private Button deleteMissionBtn;
+	
 	ObservableList<Model> myData = FXCollections.observableArrayList();
 	
 	@FXML
@@ -33,6 +36,14 @@ public class SampleController implements Initializable{
 		var newMission = new Model(datePicker.getValue(), missionDescription.getText());
 		myData.add(newMission);
 		eventListView.setItems(myData);
+		missionDescription.clear();
+	}
+	
+	@FXML
+	private void deleteMission(ActionEvent e) {
+		myData.remove(eventListView.getSelectionModel().getSelectedIndex());
+		
+		
 	}
 
 	@Override
