@@ -2,6 +2,7 @@ package application;
 	
 import java.io.IOException;
 
+import controllers.SampleController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import missionSerializer.MissionSerializer;
@@ -31,7 +32,7 @@ public class Main extends Application {
 	}
 	
 	private static Parent loadFXML(String fxml) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/application/" + fxml + ".fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/views/" + fxml + ".fxml"));
 		Parent parent = fxmlLoader.load();
 		appController = fxmlLoader.getController();
 		return parent;
