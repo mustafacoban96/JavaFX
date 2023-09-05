@@ -1,10 +1,12 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Model {
+public class Model implements Serializable{
 	// we want to add our mission into listView component as model.
 	
+	private static final long serialVersionUID=1L;
 	private LocalDate localDate;
 	private String descriptionMission;
 	
