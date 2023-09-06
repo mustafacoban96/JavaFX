@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?stylesheet css.css?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SampleController">
+   <children>
+      <ListView fx:id="myListView" layoutY="54.0" prefHeight="386.0" prefWidth="600.0" />
+      <Separator layoutY="38.0" prefHeight="8.0" prefWidth="600.0" />
+      <JFXButton fx:id="showBtn" layoutX="237.0" layoutY="4.0" prefHeight="30.0" prefWidth="125.0" text="Show" style=" -jfx-button-type: FLAT;
+     -fx-background-color: #2196F3;
+     -fx-text-fill: white;"/>
+   </children>
+</AnchorPane>

@@ -22,7 +22,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import missionSerializer.MissionSerializer;
+import router.Routing;
 
 public class SampleController implements Initializable{
 	@FXML
@@ -70,10 +72,12 @@ public class SampleController implements Initializable{
  	
 	@FXML
 	private void loginBtn() throws IOException {
-		Stage primaryStage = new Stage();
+		/*Stage primaryStage = new Stage();
 		Scene primaryScene = new Scene(Main.loadFXML("GirisPaneli"));
 		primaryStage.setScene(primaryScene);
-		primaryStage.show();
+		primaryStage.show();*/
+		
+		Routing.redirectPage("Giris Paneli", "GirisPaneli", null, StageStyle.DECORATED, true);
 	}
 	
 	
