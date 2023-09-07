@@ -19,6 +19,9 @@ public class Main extends Application {
 		scene  = new Scene(loadFXML("Sample"));
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Wifi-App");
+		primaryStage.setMaxHeight(500);
+		primaryStage.setMaxWidth(600);
+		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
 	
