@@ -3,7 +3,10 @@ package controllers;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,7 +20,7 @@ import model.WifiProfile;
 
 public class ProcessController {
 	private static Process process;
-	private static final String MY_PATH="C:/wifi-password/"; 
+	public static final String MY_PATH="C:/wifi-password/"; 
 	
 	
 	
@@ -47,10 +50,7 @@ public class ProcessController {
 					}
 					
 				}
-				else {
-					System.out.println("not okey");
-					return myWifiList;
-		}
+				
 				return myWifiList;
 		
 	}
@@ -63,7 +63,7 @@ public class ProcessController {
 		process = Runtime.getRuntime().exec("netsh wlan export profile folder=C:\\wifi-password\\ key=clear");
 		//process = new ProcessBuilder("netsh", "wlan", "export", "profile", "folder=C:/wifi-password/" ,"key=clear").start();
 		process.waitFor();
-		System.out.println("command was completed....");
+		
 		
 	}
 	
@@ -87,7 +87,7 @@ public class ProcessController {
 	                String wifiName = nameList.item(0).getTextContent();
 
 	                // Print the extracted value
-	                System.out.println(wifiName + ": " + keyMaterial);
+	                
 	                wifiProfile = new WifiProfile(wifiName, keyMaterial);
 	                return wifiProfile;
 	            } 
@@ -100,6 +100,10 @@ public class ProcessController {
 	    }
 		return wifiProfile;
 	}
+	
+	
+	//delete folder
+	 
 	
 	
 	
