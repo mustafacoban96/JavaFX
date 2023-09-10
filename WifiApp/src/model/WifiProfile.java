@@ -1,6 +1,8 @@
 package model;
 
-public class WifiProfile {
+
+public class WifiProfile{
+	
 	
 	private String name;
 	private String password;

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -14,12 +13,17 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import model.WifiProfile;
+
 public class ProcessController {
 	private static Process process;
 	private static final String MY_PATH="C:/wifi-password/"; 
 	
-	public static void mkDirectory() throws IOException, ParserConfigurationException, SAXException {
-		
+	
+	
+	
+	public static ArrayList<WifiProfile> mkDirectory() throws IOException, ParserConfigurationException, SAXException {
+		ArrayList<WifiProfile> myWifiList = new ArrayList<WifiProfile>();
 		File file = new File("C:/wifi-password");
 		 
 				if(file.mkdir() == true) {
@@ -29,10 +33,11 @@ public class ProcessController {
 						for(int i = 0; i < files.length; i++){
 					        String filename = files[i].getName();
 					        if(filename.endsWith(".xml")||filename.endsWith(".XML")) {
-					        	parserKey(filename);
-					        	   
+					        	myWifiList.add(parserKey(filename));
+					        	
 					        }
 						}
+						return myWifiList;
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -44,7 +49,9 @@ public class ProcessController {
 				}
 				else {
 					System.out.println("not okey");
+					return myWifiList;
 		}
+				return myWifiList;
 		
 	}
 	
@@ -57,11 +64,12 @@ public class ProcessController {
 		//process = new ProcessBuilder("netsh", "wlan", "export", "profile", "folder=C:/wifi-password/" ,"key=clear").start();
 		process.waitFor();
 		System.out.println("command was completed....");
-		Thread.sleep(1000);
+		
 	}
 	
-	private static void parserKey(String file_name) throws ParserConfigurationException, SAXException, IOException {
+	private static WifiProfile parserKey(String file_name) throws ParserConfigurationException, SAXException, IOException {
 		File xmlFile = new File(MY_PATH + file_name);
+		WifiProfile wifiProfile = null;
 
 	    if (xmlFile.exists()) {
 	        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -70,26 +78,27 @@ public class ProcessController {
 
 	        try {
 	            Document document = builder.parse(inputStream);
-
 	            NodeList keyMaterialList = document.getElementsByTagName("keyMaterial");
 	            NodeList nameList = document.getElementsByTagName("name");
 	            
 	            if (keyMaterialList.getLength() > 0) {
-	                // Extract the text content of the <keyMaterial> element
+	                // Extract the text content of the <keyMaterial> and <name> element
 	                String keyMaterial = keyMaterialList.item(0).getTextContent();
 	                String wifiName = nameList.item(0).getTextContent();
 
 	                // Print the extracted value
 	                System.out.println(wifiName + ": " + keyMaterial);
-	            } else {
-	                System.out.println("<keyMaterial> element not found in the XML.");
-	            }
+	                wifiProfile = new WifiProfile(wifiName, keyMaterial);
+	                return wifiProfile;
+	            } 
 	        } finally {
 	            inputStream.close();
 	        }
 	    } else {
 	        System.out.println("File not found: " + xmlFile.getAbsolutePath());
+	        return null;
 	    }
+		return wifiProfile;
 	}
 	
 	
